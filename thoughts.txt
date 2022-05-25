@@ -1,0 +1,23 @@
+For actual production, multiple tables, particularly one for locations and for classifications.
+
+STRING PRIMARY KEY fullName
+INT UNIQUE FOREIGN KEY id
+STRING shortName
+
+locations
+id | fullName                | shortName
+1  | 'Fort Leonard Wood, MO' | 'Leonard'
+2  | '1710 TC, Emporia, VA'  | 'Emporia'
+
+
+STRING PRIMARYKEY fullName
+INT UNIQUE FOREIGN KEY id
+STRING family     -- string or int?
+STRING revision   -- string or int?
+
+classifications
+id | fullName  | family  | revision
+1  | 'M915A5'  | '915'   | '5'
+2  | 'M915A3'  | '915'   | '3'
+3  | 'M1120A2' | '1120'  | '2'
+4  | 'M1120A4' | '1120'  | '4'
