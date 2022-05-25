@@ -42,3 +42,5 @@ connection.query('SELECT * FROM vehicles', (error, rows) => {
 });
 
 connection.end();
+
+// token: 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
