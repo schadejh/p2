@@ -7,6 +7,20 @@
     <title>p2 report</title>
 </head>
 <body>
-    some stuff here, is it working?
+    <ul>
+        <li>Not a to-do list (instead db of vehicles in a unit), stored in a MySQL databse.</li>
+        <li>You will provide an Express-based web service for interacting with the database.</li> <!--to do-->
+        <li>Service is available via <code>https://project2.YOUR-DOMAIN-NAME:8443/</code>.</li>
+        <li>The endpoints of the web service and any parameters must be appropriately named.</li> <!--to do-->
+        <li>The web service must send and receive complex data as JSON.</li> <!--to do-->
+        <li>The full spectrum of CRUD operations is supported.</li>
+        <li>The database is only directly accessible from within the droplet, and not from outside. Uses <code>ufw</code> to block all ports but the ones needed for SSH and the allowed web servers.</li>
+        <li>Nginx server that allows global, encrypted access to your web service.</li>
+        <li>The web service must support cross-origin resource sharing using custom middleware and an <code>options</code> wildcard endpoint.</li> <!--to do-->
+        <li>Uses <code>pm2</code> so that it stays running.</li>
+        <li>Your service must be stored in a Git repository that you have shared with your instructor. On GitHub, shared with user <code>twodee</code>.</li> 
+        <li>Your database&#8217;s creation and schema scripts must be included in your repository. Passwords must not be included.</li>
+        <li>Have your service respond to <code>https://project2.YOUR-DOMAIN-NAME:8443/report.html</code> by sending back an HTML page with brief report containing an itemized breakdown of how you believe you have met the expectations listed above.</li>
+      </ul>
 </body>
 </html>
