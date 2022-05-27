@@ -34,16 +34,16 @@ function create(row) {
 	});
 }
 
-// function readAll() {
-// 	connection.query('SELECT * FROM Vehicles', (error, rows) => {
-// 		if (error) {
-// 			console.error(error);
-// 		} else {
-// 			const vehicles = rows.map(rowToMemory);
-// 			console.log(vehicles);
-// 		}
-// 	});
-// }
+function readAll() {
+	connection.query('SELECT * FROM Vehicles', (error, rows) => {
+		if (error) {
+			console.error(error);
+		} else {
+			const vehicles = rows.map(rowToMemory);
+			console.log(vehicles);
+		}
+	});
+}
 
 function readOne(id) {
 	connection.query('SELECT * FROM Vehicles WHERE id=?', (error, row) => {
@@ -67,19 +67,40 @@ function update(row) {
 	});
 }
 
-// function deleteRow(row) {
-// 	connection.query('UPDATE Vehicles SET deleted=1 WHERE id=?', (error, row) => {
-// 		if (error) {
-// 			console.error(error);
-// 		} else {
-// 			const vehicle = row.map(rowToMemory);
-// 			console.log(row);
-// 		}
-// 	});
-// }
+function deleteRow(row) {
+	connection.query('UPDATE Vehicles SET deleted=1 WHERE id=?', (error, row) => {
+		if (error) {
+			console.error(error);
+		} else {
+			const vehicle = row.map(rowToMemory);
+			console.log(row);
+		}
+	});
+}
 
 // define endpoints...
+
 const service = express();
+
+service.post('/vehicles/:id', (request, response) => {
+	connection.query('INSERT INTO Vehicles(regNo, class, location, dateLastMoved, deadlined) VALUES (?, ?, ?, ?, ?)', (error, rows) => {
+		if (error) {
+			console.error(error);
+			response.status(500);
+			response.json({
+				ok: false,
+				results: error.message,
+			});
+		} else {
+			const vehicles = rows.map(rowToMemory);
+			console.log(vehicles);
+			response.json({
+				ok: true,
+				results: vehicles,
+			});
+		}
+	});
+});
 
 service.get('/vehicles/', (request, response) => {
 	connection.query('SELECT * FROM Vehicles WHERE deleted=false', (error, rows) => {
@@ -99,10 +120,28 @@ service.get('/vehicles/', (request, response) => {
 			});
 		}
 	});
-
 });
 
-// 'DELETE' ENDPOINT
+service.patch('/vehicles/:id', (request, response) => {
+	connection.query('UPDATE Vehicles SET regNo=?, class=?, location=?, dateLastMoved=?, deadlined=? WHERE id=?', (error, rows) => {
+		if (error) {
+			console.error(error);
+			response.status(500);
+			response.json({
+				ok: false,
+				results: error.message,
+			});
+		} else {
+			const vehicles = rows.map(rowToMemory);
+			console.log(vehicles);
+			response.json({
+				ok: true,
+				results: vehicles,
+			});
+		}
+	});
+});
+
 service.delete('/vehicles/:id', (request, response) => {
 	const parameters = [parseInt(request.params.id)];
 		connection.query('UPDATE Vehicles SET deleted=TRUE WHERE id=?', (error, rows) => {
