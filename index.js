@@ -152,7 +152,17 @@ service.get('/vehicles/:id', (request, response) => {
 
 // UPDATE
 service.patch('/vehicles/:regNo:class:location:dateLastMoved:deadlined:id', (request, response) => {
-	connection.query('UPDATE Vehicles SET regNo=?, class=?, location=?, dateLastMoved=?, deadlined=? WHERE id=?', parameters, (error, rows) => {
+	const parameters = [
+		request.body.regNo,
+		request.body.class,
+		request.body.location,
+		request.body.dateLastMoved,
+		request.body.deadlined,
+		parseInt(request.body.id),
+	];
+
+	const query = 'UPDATE Vehicles SET regNo=?, class=?, location=?, dateLastMoved=?, deadlined=? WHERE id=?';
+	connection.query(query, parameters, (error, result) => {
 		if (error) {
 			console.error(error);
 			response.status(500);
@@ -161,7 +171,7 @@ service.patch('/vehicles/:regNo:class:location:dateLastMoved:deadlined:id', (req
 				results: error.message,
 			});
 		} else {
-			const vehicles = rows;
+			const vehicles = result;
 			console.log(vehicles);
 			response.json({
 				ok: true,
