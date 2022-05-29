@@ -1,4 +1,5 @@
 const { query } = require('express');
+const { query } = require('express');
 const express = require('express');
 const fs = require('fs');
 const mysql = require('mysql');
@@ -85,9 +86,19 @@ const service = express();
 service.use(express.json()); // ADDED FROM STACKOVERFLOW
 
 // CREATE
-service.post('/vehicles/:regNo:class:location:dateLastMoved:deadlined', (request, response) => {
+service.post('/vehicles/create', (request, response) => {
 	console.log('it is a CREATE request!');
-	connection.query('INSERT INTO Vehicles(regNo, class, location, dateLastMoved, deadlined) VALUES (?, ?, ?, ?, ?)', parameters, (error, result) => {
+	console.log(request.body);
+	const parameters = [
+		request.body.regNo,
+		request.body.class,
+		request.body.location,
+		request.body.dateLastMoved,
+		request.body.deadlined,
+	];
+
+	const query = 'INSERT INTO Vehicles(regNo, class, location, dateLastMoved, deadlined) VALUES (?, ?, ?, ?, ?)';
+	connection.query(query, parameters, (error, result) => {
 		if (error) {
 			console.error(error);
 			response.status(500);
