@@ -154,6 +154,7 @@ service.get('/vehicles/:id', (request, response) => {
 // UPDATE
 service.patch('/vehicles/update/:id', (request, response) => {
 	console.log('it is an UPDATE request');
+	console.log(request.body);
 	const parameters = [
 		request.body.regNo,
 		request.body.class,
