@@ -182,11 +182,11 @@ service.delete('/vehicles/:id', (request, response) => {
 				results: error.message,
 			});
 		} else {
-			//const vehicles = rows.map(rowToMemory);
-			console.log('vehicles');
+			const deletedVehicle = rows.rowToMemory;
+			console.log('deleted: ' + deletedVehicle);
 			response.json({
 				ok: true,
-				results: 'vehicles',
+				results: 'deleted: ' + deletedVehicle,
 			});
 		}
 	});
