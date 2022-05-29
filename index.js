@@ -140,7 +140,7 @@ service.get('/vehicles/:id', (request, response) => {
 				results: error.message,
 			});
 		} else {
-			const vehicle = row.map(rowToMemory);
+			const vehicle = row.rowToMemory;
 			console.log('single vehicle: ' + vehicle);
 			response.json({
 				ok: true,
