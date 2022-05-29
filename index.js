@@ -85,6 +85,7 @@ const service = express();
 
 // CREATE
 service.post('/vehicles/:regNo:class:location:dateLastMoved:deadlined', (request, response) => {
+	console.log('it is a CREATE request!');
 	connection.query('INSERT INTO Vehicles(regNo, class, location, dateLastMoved, deadlined) VALUES (?, ?, ?, ?, ?)', parameters, (error, result) => {
 		if (error) {
 			console.error(error);
@@ -151,8 +152,8 @@ service.get('/vehicles/:id', (request, response) => {
 });
 
 // UPDATE
-service.patch('/vehicles/:regNo:class:location:dateLastMoved:deadlined:id', (request, response) => {
-	console.log('it is an UPDATE request')
+service.patch('/vehicles/update/:id', (request, response) => {
+	console.log('it is an UPDATE request');
 	const parameters = [
 		request.body.regNo,
 		request.body.class,
