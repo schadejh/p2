@@ -82,7 +82,7 @@ function rowToMemory(row) {
 // define endpoints...
 
 const service = express();
-service.use(express.json()); // ADDED FROM STACKOVERFLOW
+//service.use(express.json()); // ADDED FROM STACKOVERFLOW
 
 // CREATE
 service.post('/vehicles/:regNo:class:location:dateLastMoved:deadlined', (request, response) => {
