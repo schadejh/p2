@@ -187,10 +187,10 @@ service.delete('/vehicles/delete/:id', (request, response) => {
 			});
 		} else {
 			const deletedVehicle = row.map(rowToMemory);
-			console.log('deleted a vehicle' + deletedVehicle);
+			console.log('deleted vehicle:' + deletedVehicle);
 			response.json({
 				ok: true,
-				results: 'deleted a vehicle' + deletedVehicle,
+				results: 'deleted vehicle:' + deletedVehicle,
 			});
 		}
 	});
