@@ -85,7 +85,7 @@ const service = express();
 
 // CREATE
 service.post('/vehicles/:regNo:class:location:dateLastMoved:deadlined', (request, response) => {
-	connection.query('INSERT INTO Vehicles(regNo, class, location, dateLastMoved, deadlined) VALUES (?, ?, ?, ?, ?)', parameters, (error, rows) => {
+	connection.query('INSERT INTO Vehicles(regNo, class, location, dateLastMoved, deadlined) VALUES (?, ?, ?, ?, ?)', parameters, (error, result) => {
 		if (error) {
 			console.error(error);
 			response.status(500);
@@ -94,7 +94,7 @@ service.post('/vehicles/:regNo:class:location:dateLastMoved:deadlined', (request
 				results: error.message,
 			});
 		} else {
-			const vehicles = rows.map(rowToMemory);
+			const vehicles = result;
 			console.log(vehicles);
 			response.json({
 				ok: true,
@@ -161,7 +161,7 @@ service.patch('/vehicles/:regNo:class:location:dateLastMoved:deadlined:id', (req
 				results: error.message,
 			});
 		} else {
-			const vehicles = rows.map(rowToMemory);
+			const vehicles = rows;
 			console.log(vehicles);
 			response.json({
 				ok: true,
@@ -177,7 +177,7 @@ service.delete('/vehicles/delete/:id', (request, response) => {
 	const parameters = [parseInt(request.params.id)];
 
 	const query = 'UPDATE Vehicles SET deleted=TRUE WHERE id=?';
-	connection.query(query, parameters, (error, row) => {
+	connection.query(query, parameters, (error, result) => {
 		if (error) {
 			console.error(error);
 			response.status(500);
@@ -186,7 +186,7 @@ service.delete('/vehicles/delete/:id', (request, response) => {
 				results: error.message,
 			});
 		} else {
-			const deletedVehicle = row.map(rowToMemory);
+			const deletedVehicle = result;
 			console.log('deleted vehicle:' + deletedVehicle);
 			response.json({
 				ok: true,
