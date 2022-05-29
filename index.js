@@ -136,11 +136,11 @@ service.get('/vehicles/:id', (request, response) => {
 				results: error.message,
 			});
 		} else {
-			const vehicles = rows.map(rowToMemory);
-			console.log(vehicles);
+			//const vehicles = rows.map(rowToMemory);
+			console.log('read one vehicle');
 			response.json({
 				ok: true,
-				results: vehicles,
+				results: 'read one vehicle',
 			});
 		}
 	});
@@ -168,7 +168,7 @@ service.patch('/vehicles/:regNo:class:location:dateLastMoved:deadlined:id', (req
 });
 
 // DELETE
-service.delete('/vehicles/:id', (request, response) => {
+service.delete('/vehicles/delete/:id', (request, response) => {
 	console.log('hey it is a delete request');
 	const parameters = [parseInt(request.params.id)];
 
@@ -182,11 +182,11 @@ service.delete('/vehicles/:id', (request, response) => {
 				results: error.message,
 			});
 		} else {
-			const deletedVehicle = rows.rowToMemory;
-			console.log('deleted: ' + deletedVehicle);
+			//const deletedVehicle = rows.rowToMemory;
+			console.log('deleted a vehicle' /*+ deletedVehicle*/ );
 			response.json({
 				ok: true,
-				results: 'deleted: ' + deletedVehicle,
+				results: 'deleted a vehicle' // + deletedVehicle,
 			});
 		}
 	});
