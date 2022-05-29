@@ -1,5 +1,4 @@
 const { query } = require('express');
-const { query } = require('express');
 const express = require('express');
 const fs = require('fs');
 const mysql = require('mysql');
