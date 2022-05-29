@@ -185,11 +185,10 @@ service.patch('/vehicles/update/:id', (request, response) => {
 				results: error.message,
 			});
 		} else {
-			const vehicles = result;
-			console.log(vehicles);
+			console.log(result);
 			response.json({
 				ok: true,
-				results: vehicles,
+				results: result,
 			});
 		}
 	});
