@@ -127,7 +127,7 @@ service.get('/vehicles/', (request, response) => {
 
 // READ ONE
 service.get('/vehicles/:id', (request, response) => {
-	console.log('het it si a read one request');
+	console.log('hey it is a READ ONE request');
 	const parameters = [parseInt(request.params.id)];
 
 	const query = 'SELECT * FROM Vehicles WHERE id=?';
@@ -144,7 +144,7 @@ service.get('/vehicles/:id', (request, response) => {
 			console.log('read one vehicle');
 			response.json({
 				ok: true,
-				results: 'read one vehicle',
+				results: rows.map(rowToMemory),
 			});
 		}
 	});
