@@ -127,7 +127,11 @@ service.get('/vehicles/', (request, response) => {
 
 // READ ONE
 service.get('/vehicles/:id', (request, response) => {
-	connection.query('SELECT * FROM Vehicles WHERE id=?', parameters, (error, rows) => {
+	console.log('het it si a read one request');
+	const parameters = [parseInt(request.params.id)];
+
+	const query = 'SELECT * FROM Vehicles WHERE id=?';
+	connection.query(query, parameters, (error, rows) => {
 		if (error) {
 			console.error(error);
 			response.status(500);
