@@ -144,7 +144,7 @@ service.get('/vehicles/:id', (request, response) => {
 			console.log('single vehicle: ' + vehicle);
 			response.json({
 				ok: true,
-				results: row.map(rowToMemory),
+				results: vehicle,
 			});
 		}
 	});
@@ -177,7 +177,7 @@ service.delete('/vehicles/delete/:id', (request, response) => {
 	const parameters = [parseInt(request.params.id)];
 
 	const query = 'UPDATE Vehicles SET deleted=TRUE WHERE id=?';
-	connection.query(query, parameters, (error, rows) => {
+	connection.query(query, parameters, (error, row) => {
 		if (error) {
 			console.error(error);
 			response.status(500);
@@ -186,11 +186,11 @@ service.delete('/vehicles/delete/:id', (request, response) => {
 				results: error.message,
 			});
 		} else {
-			//const deletedVehicle = rows.rowToMemory;
-			console.log('deleted a vehicle' /*+ deletedVehicle*/ );
+			const deletedVehicle = row.map(rowToMemory);
+			console.log('deleted a vehicle' + deletedVehicle);
 			response.json({
 				ok: true,
-				results: 'deleted a vehicle' // + deletedVehicle,
+				results: 'deleted a vehicle' + deletedVehicle,
 			});
 		}
 	});
