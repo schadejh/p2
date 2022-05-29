@@ -21,8 +21,8 @@ INSERT INTO Vehicles (regNo, class, location, dateLastMoved, deadlined) VALUES
 
 ('121',	'M915A3',	'Emporia',	"2022-05-15",	FALSE	),
 ('122',	'M915A5',	'Leonard',	"2022-05-15",	FALSE	),
-('123',	'M1120A2',	'Emporia',	"2022-05-15",	FALSE	),
-('124',	'M1120A2',	'Emporia',	"2021-10-12",	TRUE	),
+('123',	'M984A2',	'Emporia',	"2022-05-15",	FALSE	),
+('124',	'M984A2',	'Emporia',	"2021-10-12",	TRUE	),
 
 ('131',	'M915A3',	'Emporia',	"2022-03-14",	FALSE	),
 ('132',	'M915A3',	'Leonard',	"2022-03-14",	TRUE	),
@@ -41,8 +41,8 @@ INSERT INTO Vehicles (regNo, class, location, dateLastMoved, deadlined) VALUES
 ('224',	'M915A3',	'Emporia',	"2022-05-15",	FALSE	),
 
 ('231',	'M915A3',	'Emporia',	"2022-05-15",	FALSE	),
-('232',	'M1120A4',	'Emporia',	"2022-05-15",	FALSE	),
-('233',	'M1120A2',	'Emporia',	"2022-02-13",	TRUE	),
+('232',	'M984A4',	'Emporia',	"2022-05-15",	FALSE	),
+('233',	'M984A2',	'Emporia',	"2022-02-13",	TRUE	),
 ('234',	'M915A3',	'Emporia',	"2022-02-12",	TRUE	);
 
 
