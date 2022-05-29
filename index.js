@@ -1,3 +1,4 @@
+const { query } = require('express');
 const express = require('express');
 const fs = require('fs');
 const mysql = require('mysql');
@@ -170,22 +171,24 @@ service.patch('/vehicles/:regNo:class:location:dateLastMoved:deadlined:id', (req
 service.delete('/vehicles/:id', (request, response) => {
 	console.log('hey it is a delete request');
 	const parameters = [parseInt(request.params.id)];
-		connection.query('UPDATE Vehicles SET deleted=TRUE WHERE id=?', parameters, (error, rows) => {
-			if (error) {
-				console.error(error);
-				response.status(500);
-				response.json({
-					ok: false,
-					results: error.message,
-				});
-			} else {
-				const vehicles = rows.map(rowToMemory);
-				console.log(vehicles);
-				response.json({
-					ok: true,
-					results: vehicles,
-				});
-			}
+
+	const query = 'UPDATE Vehicles SET deleted=TRUE WHERE id=?';
+	connection.query(query, parameters, (error, rows) => {
+		if (error) {
+			console.error(error);
+			response.status(500);
+			response.json({
+				ok: false,
+				results: error.message,
+			});
+		} else {
+			const vehicles = rows.map(rowToMemory);
+			console.log(vehicles);
+			response.json({
+				ok: true,
+				results: vehicles,
+			});
+		}
 	});
 });
 
