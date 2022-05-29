@@ -167,7 +167,8 @@ service.patch('/vehicles/:regNo:class:location:dateLastMoved:deadlined:id', (req
 });
 
 // DELETE
-service.delete('/vehicles/delete/:id', (request, response) => {
+service.delete('/vehicles/:id', (request, response) => {
+	console.log('hey it is a delete request');
 	const parameters = [parseInt(request.params.id)];
 		connection.query('UPDATE Vehicles SET deleted=TRUE WHERE id=?', (error, rows) => {
 			if (error) {
