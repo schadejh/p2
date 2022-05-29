@@ -84,7 +84,7 @@ const service = express();
 
 // CREATE
 service.post('/vehicles/:regNo:class:location:dateLastMoved:deadlined', (request, response) => {
-	connection.query('INSERT INTO Vehicles(regNo, class, location, dateLastMoved, deadlined) VALUES (?, ?, ?, ?, ?)', (error, rows) => {
+	connection.query('INSERT INTO Vehicles(regNo, class, location, dateLastMoved, deadlined) VALUES (?, ?, ?, ?, ?)', parameters, (error, rows) => {
 		if (error) {
 			console.error(error);
 			response.status(500);
@@ -126,7 +126,7 @@ service.get('/vehicles/', (request, response) => {
 
 // READ ONE
 service.get('/vehicles/:id', (request, response) => {
-	connection.query('SELECT * FROM Vehicles WHERE id=?', (error, rows) => {
+	connection.query('SELECT * FROM Vehicles WHERE id=?', parameters, (error, rows) => {
 		if (error) {
 			console.error(error);
 			response.status(500);
@@ -147,7 +147,7 @@ service.get('/vehicles/:id', (request, response) => {
 
 // UPDATE
 service.patch('/vehicles/:regNo:class:location:dateLastMoved:deadlined:id', (request, response) => {
-	connection.query('UPDATE Vehicles SET regNo=?, class=?, location=?, dateLastMoved=?, deadlined=? WHERE id=?', (error, rows) => {
+	connection.query('UPDATE Vehicles SET regNo=?, class=?, location=?, dateLastMoved=?, deadlined=? WHERE id=?', parameters, (error, rows) => {
 		if (error) {
 			console.error(error);
 			response.status(500);
@@ -170,7 +170,7 @@ service.patch('/vehicles/:regNo:class:location:dateLastMoved:deadlined:id', (req
 service.delete('/vehicles/:id', (request, response) => {
 	console.log('hey it is a delete request');
 	const parameters = [parseInt(request.params.id)];
-		connection.query('UPDATE Vehicles SET deleted=TRUE WHERE id=?', (error, rows) => {
+		connection.query('UPDATE Vehicles SET deleted=TRUE WHERE id=?', parameters, (error, rows) => {
 			if (error) {
 				console.error(error);
 				response.status(500);
