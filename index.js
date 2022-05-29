@@ -160,7 +160,7 @@ service.patch('/vehicles/update/:id', (request, response) => {
 		request.body.location,
 		request.body.dateLastMoved,
 		request.body.deadlined,
-		parseInt(request.body.id),
+		parseInt(request.params.id),
 	];
 
 	const query = 'UPDATE Vehicles SET regNo=?, class=?, location=?, dateLastMoved=?, deadlined=? WHERE id=?';
