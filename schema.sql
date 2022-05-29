@@ -60,5 +60,5 @@ CREATE TABLE Classes
 INSERT INTO Classes (family, revision, description) VALUES
 ('915', '3', 'long range, line-haul, A3'),
 ('915', '5', 'long range, line-haul, A5'),
-('984', '0', 'wrecker'),
+('984', '2', 'wrecker'),
 ('1120', '4', 'load handling system (LHS)');
