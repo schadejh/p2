@@ -152,6 +152,7 @@ service.get('/vehicles/:id', (request, response) => {
 
 // UPDATE
 service.patch('/vehicles/:regNo:class:location:dateLastMoved:deadlined:id', (request, response) => {
+	console.log('it is an UPDATE request')
 	const parameters = [
 		request.body.regNo,
 		request.body.class,
