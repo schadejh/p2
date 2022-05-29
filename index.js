@@ -22,62 +22,62 @@ function rowToMemory(row) {
 	};
 }
 
-function create(row) {
-	const insertQuery = 'INSERT INTO Vehicles(regNo, class, location, dateLastMoved, deadlined) VALUES (?, ?, ?, ?, ?)';
-	// get parameters from user
-	connection.query(insertQuery, parameters, (error, result) => {
-		if (error) {
-			console.error(error);
-		} else {
-			const vehicle = row.map(rowToMemory);
-			console.log(result);
-		}
-	});
-}
+// function create(row) {
+// 	const insertQuery = 'INSERT INTO Vehicles(regNo, class, location, dateLastMoved, deadlined) VALUES (?, ?, ?, ?, ?)';
+// 	// get parameters from user
+// 	connection.query(insertQuery, parameters, (error, result) => {
+// 		if (error) {
+// 			console.error(error);
+// 		} else {
+// 			const vehicle = row.map(rowToMemory);
+// 			console.log(result);
+// 		}
+// 	});
+// }
 
-function readAll() {
-	connection.query('SELECT * FROM Vehicles', (error, rows) => {
-		if (error) {
-			console.error(error);
-		} else {
-			const vehicles = rows.map(rowToMemory);
-			console.log(vehicles);
-		}
-	});
-}
+// function readAll() {
+// 	connection.query('SELECT * FROM Vehicles', (error, rows) => {
+// 		if (error) {
+// 			console.error(error);
+// 		} else {
+// 			const vehicles = rows.map(rowToMemory);
+// 			console.log(vehicles);
+// 		}
+// 	});
+// }
 
-function readOne(id) {
-	connection.query('SELECT * FROM Vehicles WHERE id=?', (error, row) => {
-		if (error) {
-			console.error(error);
-		} else {
-			const vehicle = row.map(rowToMemory); // make a full row to memory function
-			console.log(vehicle);
-		}
-	});
-}
+// function readOne(id) {
+// 	connection.query('SELECT * FROM Vehicles WHERE id=?', (error, row) => {
+// 		if (error) {
+// 			console.error(error);
+// 		} else {
+// 			const vehicle = row.map(rowToMemory); // make a full row to memory function
+// 			console.log(vehicle);
+// 		}
+// 	});
+// }
 
-function update(row) {
-	connection.query('UPDATE Vehicles SET regNo=?, class=?, location=?, dateLastMoved=?, deadlined=? WHERE id=?', (error, row) => {
-		if (error) {
-			console.error(error);
-		} else {
-			const vehicle = row.map(rowToMemory);
-			console.log(row);
-		}
-	});
-}
+// function update(row) {
+// 	connection.query('UPDATE Vehicles SET regNo=?, class=?, location=?, dateLastMoved=?, deadlined=? WHERE id=?', (error, row) => {
+// 		if (error) {
+// 			console.error(error);
+// 		} else {
+// 			const vehicle = row.map(rowToMemory);
+// 			console.log(row);
+// 		}
+// 	});
+// }
 
-function deleteRow(row) {
-	connection.query('UPDATE Vehicles SET deleted=1 WHERE id=?', (error, row) => {
-		if (error) {
-			console.error(error);
-		} else {
-			const vehicle = row.map(rowToMemory);
-			console.log(row);
-		}
-	});
-}
+// function deleteRow(row) {
+// 	connection.query('UPDATE Vehicles SET deleted=1 WHERE id=?', (error, row) => {
+// 		if (error) {
+// 			console.error(error);
+// 		} else {
+// 			const vehicle = row.map(rowToMemory);
+// 			console.log(row);
+// 		}
+// 	});
+// }
 
 // define endpoints...
 
@@ -182,11 +182,11 @@ service.delete('/vehicles/:id', (request, response) => {
 				results: error.message,
 			});
 		} else {
-			const vehicles = rows.map(rowToMemory);
-			console.log(vehicles);
+			//const vehicles = rows.map(rowToMemory);
+			console.log('vehicles');
 			response.json({
 				ok: true,
-				results: vehicles,
+				results: 'vehicles',
 			});
 		}
 	});
