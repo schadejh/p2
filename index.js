@@ -90,23 +90,24 @@ service.use(express.json()); // ADDED FROM STACKOVERFLOW
 // SERVE REPORT.HTML
 service.get('/report.html', (request, response) => {
 	console.log('it is a request for report.html');
-	connection.emit((error, result) => {
-		if (error) {
-			console.error(error);
-			response.status(500);
-			response.json({
-				ok: false,
-				results: error.message,
-			});
-		} else {
-			const report = 'static/public/report.html';
-			console.log('report.html served');
-			response.json({
-				ok: true,
-				results: report,
-			});
-		}
-	});
+	response.sendFile('public/report.html');
+	// connection.emit((error, result) => {
+	// 	if (error) {
+	// 		console.error(error);
+	// 		response.status(500);
+	// 		response.json({
+	// 			ok: false,
+	// 			results: error.message,
+	// 		});
+	// 	} else {
+	// 		const report = 'static/public/report.html';
+	// 		console.log('report.html served');
+	// 		response.json({
+	// 			ok: true,
+	// 			results: report,
+	// 		});
+	// 	}
+	// });
 });
 
 // CREATE
