@@ -1,4 +1,5 @@
 const { query } = require('express');
+const { query } = require('express');
 const express = require('express');
 const { append } = require('express/lib/response');
 const fs = require('fs');
@@ -89,7 +90,7 @@ service.use(express.json()); // ADDED FROM STACKOVERFLOW
 
 // SERVE REPORT.HTML
 service.get('/report.html', (request, response) => {
-	connection.query('', (error, result) => {
+	connection.emit((error, result) => {
 		if (error) {
 			console.error(error);
 			response.status(500);
@@ -142,7 +143,8 @@ service.post('/vehicles/create', (request, response) => {
 
 // READ ALL
 service.get('/vehicles/', (request, response) => {
-	connection.query('SELECT * FROM Vehicles WHERE deleted=false', (error, rows) => {
+	const query = 'SELECT * FROM Vehicles WHERE deleted=false';
+	connection.query(query, (error, rows) => {
 		if (error) {
 			console.error(error);
 			response.status(500);
