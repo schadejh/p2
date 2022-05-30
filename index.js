@@ -90,7 +90,7 @@ service.use(express.json()); // ADDED FROM STACKOVERFLOW
 // SERVE REPORT.HTML
 service.get('/report.html', (request, response) => {
 	console.log('it is a request for report.html');
-	const projDir = '/home/james_schader/p2';
+	const projDir = '/home/james_schader/p2/';
 	response.sendFile(path.join(projDir, 'public/report.html'));
 	// connection.emit((error, result) => {
 	// 	if (error) {
