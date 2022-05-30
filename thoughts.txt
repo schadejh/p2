@@ -21,3 +21,13 @@ id | fullName  | family  | revision
 2  | 'M915A3'  | '915'   | '3'
 3  | 'M1120A2' | '1120'  | '2'
 4  | 'M1120A4' | '1120'  | '4'
+
+
+Milestone 1
+1-6. cool
+7-8. pretty sure?
+9. what?
+10-11. cool
+12. don't leave passwords lying around
+13. cool
+14. how do?
