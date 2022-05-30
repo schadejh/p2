@@ -89,20 +89,11 @@ service.use(express.json()); // ADDED FROM STACKOVERFLOW
 
 // SERVE REPORT.HTML
 service.get('/report.html', (request, response) => {
-	console.log('it is a request for report.html');
+	console.log('request for report.html');
 
-	if (error) {
-		console.error(error);
-		response.status(500);
-		response.json({
-			ok: false,
-			results: error.message,
-		});
-	} else {
-		const path = require('path');
-		const projDir = '/home/james_schader/p2/';
-		response.sendFile(path.join(projDir, 'public/report.html'));
-	}
+	const path = require('path');
+	const projDir = '/home/james_schader/p2/';
+	response.sendFile(path.join(projDir, 'public/report.html'));
 });
 
 // CREATE
