@@ -91,26 +91,18 @@ service.use(express.json()); // ADDED FROM STACKOVERFLOW
 service.get('/report.html', (request, response) => {
 	console.log('it is a request for report.html');
 
-	const path = require('path');
-	const projDir = '/home/james_schader/p2/';
-	response.sendFile(path.join(projDir, 'public/report.html'));
-	// connection.emit((error, result) => {
-	// 	if (error) {
-	// 		console.error(error);
-	// 		response.status(500);
-	// 		response.json({
-	// 			ok: false,
-	// 			results: error.message,
-	// 		});
-	// 	} else {
-	// 		const report = 'static/public/report.html';
-	// 		console.log('report.html served');
-	// 		response.json({
-	// 			ok: true,
-	// 			results: report,
-	// 		});
-	// 	}
-	// });
+	if (error) {
+		console.error(error);
+		response.status(500);
+		response.json({
+			ok: false,
+			results: error.message,
+		});
+	} else {
+		const path = require('path');
+		const projDir = '/home/james_schader/p2/';
+		response.sendFile(path.join(projDir, 'public/report.html'));
+	}
 });
 
 // CREATE
