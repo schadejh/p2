@@ -1,5 +1,6 @@
 const { query } = require('express');
 const express = require('express');
+const { append } = require('express/lib/response');
 const fs = require('fs');
 const mysql = require('mysql');
 
@@ -80,6 +81,9 @@ function rowToMemory(row) {
 // }
 
 // define endpoints...
+
+const path = require('path');
+app.use('/static', express.static(path.join(p2, 'public'));
 
 const service = express();
 service.use(express.json()); // ADDED FROM STACKOVERFLOW
