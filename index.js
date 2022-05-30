@@ -1,5 +1,4 @@
 const { query } = require('express');
-const { query } = require('express');
 const express = require('express');
 const { append } = require('express/lib/response');
 const fs = require('fs');
