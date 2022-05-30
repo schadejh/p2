@@ -83,7 +83,7 @@ function rowToMemory(row) {
 // define endpoints...
 
 const path = require('path');
-express.static(path.join(p2, 'public'));
+express.static(path.join('p2', 'public'));
 
 const service = express();
 service.use(express.json()); // ADDED FROM STACKOVERFLOW
