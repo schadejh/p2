@@ -82,11 +82,31 @@ function rowToMemory(row) {
 
 // define endpoints...
 
-const path = require('path');
-express.static('p2');
+// express.static('p2');
 
 const service = express();
 service.use(express.json()); // ADDED FROM STACKOVERFLOW
+
+// SERVE REPORT.HTML
+service.get('/report.html', (request, response) => {
+	connection.query('', (error, result) => {
+		if (error) {
+			console.error(error);
+			response.status(500);
+			response.json({
+				ok: false,
+				results: error.message,
+			});
+		} else {
+			const report = 'static/public/report.html';
+			console.log('report.html served');
+			response.json({
+				ok: true,
+				results: report,
+			});
+		}
+	});
+});
 
 // CREATE
 service.post('/vehicles/create', (request, response) => {
