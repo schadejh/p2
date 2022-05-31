@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS Vehicles;
 
 CREATE TABLE Vehicles
 (
-	id INT PRIMARY KEY AUTO_INCREMENT, -- primary keys are automatically unique and not null
+	id SERIAL PRIMARY KEY, -- primary keys are automatically unique and not null
 	regNo VARCHAR(8),
 	class VARCHAR(16),
 	location VARCHAR(32),
