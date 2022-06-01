@@ -142,6 +142,7 @@ service.get('/vehicles/', (request, response) => {
 		} else {
 			const vehicles = rows.map(rowToMemory);
 			console.log(vehicles);
+			response.status(200);
 			response.json({
 				ok: true,
 				results: vehicles,
@@ -199,6 +200,7 @@ service.patch('/vehicles/update/:id', (request, response) => {
 			});
 		} else {
 			console.log(result);
+			response.status(200);
 			response.json({
 				ok: true,
 				results: result,
@@ -231,6 +233,13 @@ service.delete('/vehicles/delete/:id', (request, response) => {
 		}
 	});
 });
+
+// OPTIONS
+service.options('*', (request, response) => {
+	response.set('Access-Control-Allow-Headers', 'Content-Type');
+	response.set('Access-Control-Allow-Methods', 'GET,POST,PATCH,DELETE');
+	response.sendStatus(200);
+  });
 
 const port = 5001;
 service.listen(port, () => {
