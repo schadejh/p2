@@ -100,6 +100,9 @@ service.get('/report.html', (request, response) => {
 service.post('/vehicles/create', (request, response) => {
 	console.log('it is a CREATE request!');
 	console.log(request.body);
+	response.set('Access-Control-Allow-Headers', 'Content-Type');
+	response.set('Access-Control-Allow-Methods', 'DELETE');
+	response.sendStatus(201); // "Created", typical status for when a thing is created
 	const parameters = [
 		request.body.regNo,
 		request.body.class,
@@ -227,7 +230,7 @@ service.delete('/vehicles/delete/:id', (request, response) => {
 			console.log('deleted vehicle:' + deletedVehicle);
 			response.set('Access-Control-Allow-Headers', 'Content-Type');
 			response.set('Access-Control-Allow-Methods', 'DELETE');
-			response.sendStatus(200);
+			response.sendStatus(204); // "No Content", typical status for delete
 			response.json({
 				ok: true,
 				results: 'deleted vehicle:' + deletedVehicle,
