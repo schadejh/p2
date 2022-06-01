@@ -142,7 +142,7 @@ service.get('/vehicles/', (request, response) => {
 		} else {
 			const vehicles = rows.map(rowToMemory);
 			console.log(vehicles);
-			response.status(200);
+			//response.status(200);
 			response.json({
 				ok: true,
 				results: vehicles,
@@ -200,7 +200,7 @@ service.patch('/vehicles/update/:id', (request, response) => {
 			});
 		} else {
 			console.log(result);
-			response.status(200);
+			//response.status(200);
 			response.json({
 				ok: true,
 				results: result,
@@ -226,6 +226,7 @@ service.delete('/vehicles/delete/:id', (request, response) => {
 		} else {
 			const deletedVehicle = result.rowToMemory;
 			console.log('deleted vehicle:' + deletedVehicle);
+			//response.status(200);
 			response.json({
 				ok: true,
 				results: 'deleted vehicle:' + deletedVehicle,
