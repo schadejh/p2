@@ -100,36 +100,44 @@ service.get('/report.html', (request, response) => {
 service.post('/vehicles/create', (request, response) => {
 	console.log('it is a CREATE request!');
 	console.log(request.body);
-	response.set('Access-Control-Allow-Headers', 'Content-Type');
-	response.set('Access-Control-Allow-Methods', 'DELETE');
-	response.sendStatus(201); // "Created", typical status for when a thing is created
-	const parameters = [
+	if (request.body.hasOwnProperty('regNo') &&
+		request.body.hasOwnProperty('class') &&
+		request.body.hasOwnProperty('location') &&
+		request.body.hasOwnProperty('dateLastMoved') &&
+		request.body.hasOwnProperty('deadlined')) {
+  
+	  const parameters = [
 		request.body.regNo,
 		request.body.class,
 		request.body.location,
 		request.body.dateLastMoved,
 		request.body.deadlined,
-	];
-
-	const query = 'INSERT INTO Vehicles(regNo, class, location, dateLastMoved, deadlined) VALUES (?, ?, ?, ?, ?)';
-	connection.query(query, parameters, (error, result) => {
+	  ];
+  
+	  const query = 'INSERT INTO Vehicles(regNo, class, location, dateLastMoved, deadlined) VALUES (?, ?, ?, ?, ?)';
+	  connection.query(query, parameters, (error, result) => {
 		if (error) {
-			console.error(error);
-			response.status(500);
-			response.json({
-				ok: false,
-				results: error.message,
-			});
+		  response.status(500);
+		  response.json({
+			ok: false,
+			results: error.message,
+		  });
 		} else {
-			const vehicles = result;
-			console.log(vehicles);
-			response.json({
-				ok: true,
-				results: vehicles,
-			});
+		  response.json({
+			ok: true,
+			results: result.insertId,
+		  });
 		}
-	});
-});
+	  });
+  
+	} else {
+	  response.status(400);
+	  response.json({
+		ok: false,
+		results: 'Incomplete vehicle.',
+	  });
+	}
+  });
 
 // READ ALL
 service.get('/vehicles/', (request, response) => {
@@ -228,9 +236,6 @@ service.delete('/vehicles/delete/:id', (request, response) => {
 		} else {
 			const deletedVehicle = result.rowToMemory;
 			console.log('deleted vehicle:' + deletedVehicle);
-			response.set('Access-Control-Allow-Headers', 'Content-Type');
-			response.set('Access-Control-Allow-Methods', 'DELETE');
-			response.sendStatus(204); // "No Content", typical status for delete
 			response.json({
 				ok: true,
 				results: 'deleted vehicle:' + deletedVehicle,
@@ -244,7 +249,7 @@ service.options('*', (request, response) => {
 	response.set('Access-Control-Allow-Headers', 'Content-Type');
 	response.set('Access-Control-Allow-Methods', 'GET,POST,PATCH,DELETE');
 	response.sendStatus(200);
-});
+  });
 
 const port = 5001;
 service.listen(port, () => {
