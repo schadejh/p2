@@ -225,6 +225,9 @@ service.delete('/vehicles/delete/:id', (request, response) => {
 		} else {
 			const deletedVehicle = result.rowToMemory;
 			console.log('deleted vehicle:' + deletedVehicle);
+			response.set('Access-Control-Allow-Headers', 'Content-Type');
+			response.set('Access-Control-Allow-Methods', 'DELETE');
+			response.sendStatus(200);
 			response.json({
 				ok: true,
 				results: 'deleted vehicle:' + deletedVehicle,
@@ -238,7 +241,7 @@ service.options('*', (request, response) => {
 	response.set('Access-Control-Allow-Headers', 'Content-Type');
 	response.set('Access-Control-Allow-Methods', 'GET,POST,PATCH,DELETE');
 	response.sendStatus(200);
-  });
+});
 
 const port = 5001;
 service.listen(port, () => {
