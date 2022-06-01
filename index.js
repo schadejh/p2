@@ -166,6 +166,7 @@ service.get('/vehicles/:id', (request, response) => {
 			});
 		} else {
 			const vehicle = row.rowToMemory;
+			console.log('single row: ' + row);
 			console.log('single vehicle: ' + vehicle);
 			response.json({
 				ok: true,
@@ -243,5 +244,3 @@ const port = 5001;
 service.listen(port, () => {
 	console.log(`We're live in port ${port}!`);
 });
-
-// connection.end();
