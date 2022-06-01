@@ -166,7 +166,7 @@ service.get('/vehicles/:id', (request, response) => {
 			});
 		} else {
 			const vehicle = row.rowToMemory;
-			console.log('single row: ' + row);
+			console.log('single row: ' + row.id);
 			console.log('single vehicle: ' + vehicle);
 			response.json({
 				ok: true,
