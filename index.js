@@ -234,7 +234,7 @@ service.delete('/vehicles/delete/:id', (request, response) => {
 				results: error.message,
 			});
 		} else {
-			const deletedVehicle = result.rowToMemory;
+			const deletedVehicle = result;
 			console.log('deleted vehicle:' + deletedVehicle);
 			response.json({
 				ok: true,
